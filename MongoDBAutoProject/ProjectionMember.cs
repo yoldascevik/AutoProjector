@@ -18,30 +18,30 @@ public class ProjectionMember<TSource, TResult>
 
     public ProjectionMember<TSource, TResult> Include()
     {
-        return Include(Name);
-    }
-        
-    public ProjectionMember<TSource, TResult> Include(string memberName)
-    {
-        _projectionProfileContext.ProjectionDefinition = _projectionProfileContext.ProjectionDefinition.Include(new StringFieldDefinition<TSource>(memberName));
-        _projectionProfileContext.RemoveExcludedMember(memberName);
+        _projectionProfileContext.ProjectionDefinition = _projectionProfileContext.ProjectionDefinition.Include(new StringFieldDefinition<TSource>(Name));
+        _projectionProfileContext.RemoveExcludedMember(Name);
         return this;
     }
         
     public ProjectionMember<TSource, TResult> Exclude()
     {
-        _projectionProfileContext.ProjectionDefinition = _projectionProfileContext.ProjectionDefinition.Exclude(new StringFieldDefinition<TSource>(Name));
+        if (Name.Equals("_id", StringComparison.CurrentCultureIgnoreCase) 
+            || Name.Equals("id", StringComparison.CurrentCultureIgnoreCase) )
+        {
+            _projectionProfileContext.ProjectionDefinition = _projectionProfileContext.ProjectionDefinition.Exclude(new StringFieldDefinition<TSource>(Name));
+        }
+        
         _projectionProfileContext.AddExcludedMember(Name);
         return this;
     }
         
-    public ProjectionMember<TSource, TResult> MapTo(Expression<Func<TResult, object>> member)
+    public ProjectionMember<TSource, TResult> MapTo<TProperty>(Expression<Func<TResult, TProperty>> member)
     {
         var memberExpression = (MemberExpression)member.Body;
         var aliasName = memberExpression.Member.Name;
 
         _projectionProfileContext.AddAlias(Name, aliasName);
-            
+        
         return this;
     }
 }

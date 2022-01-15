@@ -26,9 +26,6 @@ internal static class ProjectionDefinitionBuilderExtensions
             .Select(name => builder.Include(new StringFieldDefinition<TSource>(name)))
             .ToList();
 
-        if (!resultProperties.Contains("_id"))
-            projectionDefinitions.Add(builder.Exclude("_id"));
-
         return builder.Combine(projectionDefinitions);
     }
 }

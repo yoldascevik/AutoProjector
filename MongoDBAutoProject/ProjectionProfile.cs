@@ -7,6 +7,7 @@ namespace MongoDBAutoProject;
 
 public abstract class ProjectionProfile<TSource, TResult>
 {
+    private bool _enableAutoMap;
     private readonly List<ProjectionMember<TSource, TResult>> _projectionMembers;
     internal readonly ProjectionProfileContext<TSource> ProjectionProfileContext;
 
@@ -19,9 +20,25 @@ public abstract class ProjectionProfile<TSource, TResult>
     /// <summary>
     /// Enable automatic mapping for all matching properties.
     /// </summary>
-    protected bool EnableAutoMap { get; set; }
-        
-    protected ProjectionMember<TSource, TResult> ForMember(Expression<Func<TSource, object>> member)
+    protected bool EnableAutoMap
+    {
+        get => _enableAutoMap;
+        set
+        {
+            if (value)
+            {
+                ForMember("_id").Include();
+            }
+            else
+            {
+                ForMember("_id").Exclude();
+            }
+
+            _enableAutoMap = value;
+        }
+    }
+
+    protected ProjectionMember<TSource,TResult> ForMember<TProperty>(Expression<Func<TSource, TProperty>> member)
     {
         var memberExpression = (MemberExpression) member.Body;
         return ForMember(memberExpression.Member.Name);
@@ -57,7 +74,7 @@ public abstract class ProjectionProfile<TSource, TResult>
                 
             return builder.Combine(projectionDefinition, automapMembers);
         }
-
+        
         return projectionDefinition;
     }
 }
