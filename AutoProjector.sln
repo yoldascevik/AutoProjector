@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoProjector", "AutoProjector\AutoProjector.csproj", "{3CB4A5A7-4F44-4073-BA13-BE16D1D6A328}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoProjector.Tests", "AutoProjector.Tests\AutoProjector.Tests.csproj", "{E2F38312-648F-4CC8-924E-E1CEF40E3CEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CB4A5A7-4F44-4073-BA13-BE16D1D6A328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CB4A5A7-4F44-4073-BA13-BE16D1D6A328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CB4A5A7-4F44-4073-BA13-BE16D1D6A328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CB4A5A7-4F44-4073-BA13-BE16D1D6A328}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2F38312-648F-4CC8-924E-E1CEF40E3CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2F38312-648F-4CC8-924E-E1CEF40E3CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2F38312-648F-4CC8-924E-E1CEF40E3CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2F38312-648F-4CC8-924E-E1CEF40E3CEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
